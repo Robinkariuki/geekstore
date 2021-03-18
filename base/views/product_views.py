@@ -13,7 +13,7 @@ from base.models import *
 @api_view(['GET'])
 def getProducts(request):
     products = Product.objects.all()
-    serializer = ProductSerializer(products,many=False)
+    serializer = ProductSerializer(products,many=True)
     return Response(serializer.data)  
 
 
