@@ -12,7 +12,7 @@ from base.models import *
 def addOrderItems(request):
     user = request.user
     data = request.data
-    orderItems = data ['ordrItems']
+    orderItems = data ['orderItems']
     if orderItems and len(orderItems)==0:
         return Response({'detail':'No Order Items'}, status=status.HTTP_400_BAD_REQUEST)
     else:
@@ -42,7 +42,7 @@ def addOrderItems(request):
             item = OrderItem.objects.create(
                 product=product,
                 order = order,
-                name=producr.name,
+                name=product.name,
                 qty=i['qty'],
                 price=i['price'],
                 image =product.image.url
@@ -54,3 +54,20 @@ def addOrderItems(request):
         product.save()
     serializer = OrderSerializer(order,many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getOrderById(request,pk):
+    user = request.user
+    try:
+        order = Order.objects.get(_id=pk)
+        if user.is_staff or order.user == user:
+            serializer = OrderSerializer(order, many=False)
+            return Response(serializer.data)
+
+        else:
+            Response({'detail':'Not authorized to view this order'},status=status.HTTP_400_BAD_REQUEST)
+
+    except:
+        return Response({'detail':'Order does not exist'},status=status.HTTP_400_BAD_REQUEST)      
+
