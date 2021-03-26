@@ -174,10 +174,10 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'shopfrontend/build/static'
+    BASE_DIR / 'build/static'
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'shopfrontend/build', 'images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'build', 'images')
 
 CORS_ALLOW_ALL_ORIGINS = True
 
