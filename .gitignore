@@ -1,0 +1,8 @@
+node_modules/
+**/*.log
+virtual/
+__pycache__/
+.vscode
+*.pyc
+build/
+build2/
