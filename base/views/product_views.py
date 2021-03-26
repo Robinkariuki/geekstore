@@ -8,13 +8,31 @@ from base.serializers import *
  
 from rest_framework import status
 from base.models import *
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 
 @api_view(['GET'])
 def getProducts(request):
-    products = Product.objects.all()
+    query = request.query_params.get('keyword')
+    if query == None:
+        query =''
+
+    products = Product.objects.filter(name__icontains=query)
+
+    page =  request.query_params.get('page')
+    paginator = Paginator(products,5) 
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    if page == None:
+        page =1
+    page = int(page) 
+
     serializer = ProductSerializer(products,many=True)
-    return Response(serializer.data)  
+    return Response({'products':serializer.data,'page':page,'pages':paginator.num_pages})  
 
 
 @api_view(['GET'])
@@ -23,6 +41,14 @@ def getProduct(request,pk):
     serializer = ProductSerializer(product,many=False)
     return Response(serializer.data)    
 
+
+
+@api_view(['GET'])
+def getTopProducts(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[0:5]
+    serializer = ProductSerializer(products,many=True)
+    return Response(serializer.data)
+    
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
 def createProduct(request):
@@ -81,14 +107,15 @@ def createProductReview(request,pk):
 
 
     ## Review already exists
-    alreadyExists = Product.review_set.filter(user=user).exists()
+    alreadyExists = product.review_set.filter(user=user).exists()
 
     if alreadyExists:
-        content ={'details':'Product already reviewed'}
+        content ={'detail':'Product already reviewed'}
         return Response (content,status=status.HTTP_400_BAD_REQUEST)
+
     ## No rating or 0
     elif data['rating'] == 0:
-         content ={'details':'Please select a rating'}
+         content ={'detail':'Please select a rating'}
          return Response(content,status=status.HTTP_400_BAD_REQUEST)
 
 
