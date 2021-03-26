@@ -125,7 +125,7 @@ WSGI_APPLICATION = 'shopbackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME':'shop2',
         'USER':'robin',
         'PASSWORD':'zelda'
@@ -171,13 +171,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'shopfrontend/build/static'
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'shopfrontend/build', 'images')
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
