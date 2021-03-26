@@ -8,9 +8,11 @@ Live Demo can be viewed at https://geekstore-1.herokuapp.com/#/
 Robin kariuki
 ## Description
 An Ecommerce application built in reactjs and Django.
-## Screenshot
+## Screenshot 1
 ![Alt text](public/images/home.png?raw=true "home")
+## Screenshot 2
 ![Alt text](public/images/productdetail.png?raw=true "product=detail")
+## Screenshot 3
 ![Alt text](public/images/payment.png?raw=true "payment")
 
 
@@ -45,9 +47,5 @@ The different technologies that were used to develop this program include:
 
 
 
-## Licence
- 
- [![License](https://img.shields.io/packagist/l/loopline-systems/closeio-api-wrapper.svg)](http://opensource.org/licenses/MIT)
- 
  
  Copyright (c) 2021 RobinKariuki
