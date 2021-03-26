@@ -15,6 +15,7 @@ from datetime import timedelta
 from django.conf import settings
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -174,6 +175,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'shopfrontend/build/static'
 ]
-MEDIA_ROOT = 'static/images'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'shopfrontend/build', 'images')
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
