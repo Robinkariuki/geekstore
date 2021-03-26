@@ -29,7 +29,7 @@ SECRET_KEY = 'g&8m68a9(#&wtv(g=@@5p+^h+gyq4l%vif$e+emq22kzxa-s!v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,7 +125,7 @@ WSGI_APPLICATION = 'shopbackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME':'shop2',
         'USER':'robin',
         'PASSWORD':'zelda'
