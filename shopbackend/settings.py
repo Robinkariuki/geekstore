@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 from django.conf import settings
 import os
+import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -130,6 +131,7 @@ DATABASES = {
         'NAME':'shop2',
         'USER':'robin',
         'PASSWORD':'zelda'
+        
     }
 }
 
@@ -185,3 +187,4 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+django_heroku.settings(locals())
