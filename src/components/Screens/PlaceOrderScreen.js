@@ -121,7 +121,7 @@ const PlaceOrderScreen = ({history}) => {
                                      <Col>
                                      Item:
                                      </Col>
-                                     <Col>${cart.itemsPrice}</Col>
+                                     <Col>${Number(cart.itemsPrice)}</Col>
                                  </Row>
                             </ListGroup.Item>
 
@@ -130,7 +130,7 @@ const PlaceOrderScreen = ({history}) => {
                                      <Col>
                                      Shipping:
                                      </Col>
-                                     <Col>${cart.shippingPrice}</Col>
+                                     <Col>${Number(cart.shippingPrice)}</Col>
                                  </Row>
                             </ListGroup.Item>
 
@@ -140,7 +140,7 @@ const PlaceOrderScreen = ({history}) => {
                                      <Col>
                                      Tax:
                                      </Col>
-                                     <Col>${cart.taxPrice}</Col>
+                                     <Col>${Number(cart.taxPrice)}</Col>
                                  </Row>
                             </ListGroup.Item>
 
@@ -150,7 +150,7 @@ const PlaceOrderScreen = ({history}) => {
                                      <Col>
                                      Total:
                                      </Col>
-                                     <Col>${cart.totalPrice}</Col>
+                                     <Col>${Number(cart.totalPrice)}</Col>
                                  </Row>
                             </ListGroup.Item>
 
