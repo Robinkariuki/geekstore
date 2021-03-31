@@ -133,6 +133,7 @@ DATABASES = {
         'NAME':'shop2',
         'USER':'robin',
         'PASSWORD':'zelda',
+        'PORT':'5432'
         
         
     }
